@@ -1,5 +1,5 @@
 # devops
-$ ssh -i "C:\Users\Hwan\Downloads\fairguy.pem" ubuntu@ec2-3-38-133-77.ap-northeast-2.compute.amazonaws.com
+$ ssh -i "C:\Users\Hwan\Downloads\fairguy.pem" ubuntu@ec2-3-38-161-20.ap-northeast-2.compute.amazonaws.com
 
 1. minikube 시스템요구사항
 
@@ -113,3 +113,10 @@ $ docker container prune
 
 $ docker run --entrypoint sh ubuntu:focal
 $ docker run --entrypoint echo ubuntu:focal hello world
+
+# 실행중인 컨테이너에 명령어를 실행합니다.
+$ docker exec [container] [command]
+# my-nginx 컨테이너에 Bash 셸로 접속하기
+$ docker exec -i -t my-nginx bash
+# my-nginx 컨테이너에 환경변수 확인하기
+$ docker exec my-nginx env
