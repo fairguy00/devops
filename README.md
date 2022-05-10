@@ -120,3 +120,16 @@ $ docker exec [container] [command]
 $ docker exec -i -t my-nginx bash
 # my-nginx 컨테이너에 환경변수 확인하기
 $ docker exec my-nginx env
+
+$ docker run -p [HOST IP:PORT]:[CONTAINER PORT] [container]
+# nginx 컨테이너의 80번 포트를 호스트 모든 IP의 80번 포트와 연결하여 실행
+$ docker run -d -p 80:80 nginx
+# nginx 컨테이너의 80번 포트를 호스트 127.0.0.1 IP의 80번 포트와 연결하여 실행
+$ docker run -d -p 127.0.0.1:80:80 nginx
+# nginx 컨테이너의 80번 포트를 호스트의 사용 가능한 포트와 연결하여 실행
+$ docker run -d -p 80 nginx
+
+expose 옵션은 그저 문서화 용도
+$ docker run -d --expose 80 nginx
+# publish 옵션은 실제 포트를 바인딩
+$ docker run -d -p 80 nginx
