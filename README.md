@@ -178,3 +178,60 @@ $ docker run -d \
 --name nginx \
 -v web-volume:/usr/share/nginx/html:ro \
 nginx
+# 전체 로그 확인
+$ docker logs [container]
+# 마지막 로그 10줄 확인
+$ docker logs --tail 10 [container]
+# 실시간 로그 스트림 확인
+$ docker logs -f [container]
+# 로그마다 타임스탬프 표시
+$ docker logs -f -t [container]
+
+# 호스트 운영체제의 로그 저장 경로
+$ cat /var/lib/docker/containers/${CONTAINER_ID}/${CONTAINER_ID}-json.log
+
+#로그 용량 제한하기
+#컨테이너 단위로 로그 용량 제한을 할 수 있지만, 도커 엔진에서 기본 설정을 진행할 수도 있습니다. (운영환경에서 필수 설정)
+# 한 로그 파일 당 최대 크기를 3Mb로 제한하고, 최대 로그 파일 3개로 로테이팅.
+$ docker run \
+-d \
+--log-driver=json-file \
+--log-opt max-size=3m \
+--log-opt max-file=5 \
+nginx
+
+Dockerfile 없이 이미지 생성
+기존 컨테이너를 기반으로 새 이미지를 생성할 수 있습니다.
+# docker commit [OPTIONS] CONTAINER [REPOSITORY[:TAG]]
+# ubuntu 컨테이너의 현재 상태를 my_ubuntu:v1 이미지로 생성
+$ docker commit -a fastcampus -m “First Commit” ubuntu my_ubuntu:v1
+
+Dockerfile을 기반으로 새 이미지를 생성할 수 있습니다.
+FROM node:12-alpine
+RUN apk add --no-cache python3 g++ make
+WORKDIR /app
+COPY . .
+RUN yarn install --production
+CMD ["node", "src/index.js"]
+
+빌드 컨텍스트
+도커 빌드 명령 수행 시 현재 디렉토리(Current Working Directory)를 빌드 컨텍스트(Build Context)라고 합니다.
+Dockerfile로부터 이미지 빌드에 필요한 정보를 도커 데몬에게 전달하기 위한 목적입니다.
+=> [internal] load build definition from Dockerfile 0.0s
+=> => transferring dockerfile: 190B 0.0s
+=> [internal] load .dockerignore 0.0s
+=> => transferring context: 2B 0.0s
+=> [internal] load metadata for docker.io/library/node:12-alpine 1.0s
+=> [1/5] FROM docker.io/library/node:12-alpine@sha256:0eca266c5fe38ba93aeba 0.0s
+=> [internal] load build context 0.1s
+=> => transferring context: 4.61MB 0.1s
+
+.dockerignore
+.gitignore와 동일한 문법을 가지고 있습니다.
+특정 디렉토리 혹은 파일 목록을 빌드 컨텍스트에서 제외하기 위한 목적입니다.
+# comment
+*/temp*
+*/*/temp*
+temp?
+*.md
+!README.md
