@@ -175,6 +175,8 @@
 * ./ 디렉토리를 빌드 컨텍스트로 my_app:v1 이미지 빌드 (example/MyDockerfile 이용)
     docker build -t my_app:v1 -f example/MyDockerfile ./
 
+[docs.docker.com](https://docs.docker.com/engine/reference/builder/, "link")
+
 ## 빌드 컨텍스트
 * 도커 빌드 명령 수행 시 현재 디렉토리(Current Working Directory)를 빌드 컨텍스트(Build Context)라고 합니다.   dockerfile로부터 이미지 빌드에 필요한 정보를 도커 데몬에게 전달하기 위한 목적입니다.
     => [internal] load build definition from Dockerfile 0.0s
@@ -199,3 +201,14 @@
     !README.md
     </pre>
     </code>
+
+## 이미지 압축파일로 저장
+### 이미지를 tar 압축파일로 저장합니다.
+* docker save -o [OUTPUT-FILE] IMAGE
+* ubuntu:focal 이미지를 ubuntu_focal.tar 압축 파일로 저장
+    docker save -o ubuntu_focal.tar ubuntu:focal
+## 이미지 압축에서 불러오기
+### 이미지를 tar 압축파일로부터 불러옵니다.
+* docker load -i [INPUT-FILE]
+* ubuntu_focal.tar 압축 파일에서 ubuntu:focal 이미지 불러오기
+    docker load -i ubuntu_focal.tar
