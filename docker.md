@@ -116,8 +116,7 @@
     nginx
 
 ## 도커 볼륨
-*도커가 제공하는 볼륨 관리 기능을 활용하여 데이터를 보존합니다.
-기본적으로 /var/lib/docker/volumes/${volume-name}/_data 에 데이터가 저장됩니다.
+*도커가 제공하는 볼륨 관리 기능을 활용하여 데이터를 보존합니다.   기본적으로 /var/lib/docker/volumes/${volume-name}/_data 에 데이터가 저장됩니다.
 * web-volume 도커 볼륨 생성
     docker volume create --name db
 * 도커의 web-volume 볼륨을 Nginx의 웹 루트 디렉토리로 마운트
@@ -177,8 +176,7 @@
     docker build -t my_app:v1 -f example/MyDockerfile ./
 
 ## 빌드 컨텍스트
-* 도커 빌드 명령 수행 시 현재 디렉토리(Current Working Directory)를 빌드 컨텍스트(Build Context)라고 합니다.
-* ockerfile로부터 이미지 빌드에 필요한 정보를 도커 데몬에게 전달하기 위한 목적입니다.
+* 도커 빌드 명령 수행 시 현재 디렉토리(Current Working Directory)를 빌드 컨텍스트(Build Context)라고 합니다.   dockerfile로부터 이미지 빌드에 필요한 정보를 도커 데몬에게 전달하기 위한 목적입니다.
     => [internal] load build definition from Dockerfile 0.0s
     => => transferring dockerfile: 190B 0.0s
     => [internal] load .dockerignore 0.0s
