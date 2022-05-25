@@ -1,7 +1,8 @@
+# minikube
+
 1. minikube 시스템요구사항
 
-2. core CPU
-2GB RAM 필요함
+2. core CPU, 2GB RAM 필요함
 
 * driver docker 명령어로 클러스터 설치
     minikube start

@@ -3,6 +3,7 @@
 #
 # build:
 #   docker build --force-rm -t nodejs-server .
+#   docker build --force-rm -t nodejs-server:alpine -f Dockerfile.alpine .
 # run:
 #   docker run --rm -it --name nodejs-server nodejs-server
 #
