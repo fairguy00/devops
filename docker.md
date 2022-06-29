@@ -200,16 +200,15 @@
 
 * .gitignore와 동일한 문법을 가지고 있습니다.
 * 특정 디렉토리 혹은 파일 목록을 빌드 컨텍스트에서 제외하기 위한 목적입니다.
-    <pre>
-    <code>
+
+```
     # comment
     */temp*
     */*/temp*
     temp?
     *.md
     !README.md
-    </pre>
-    </code>
+```
 
 ## 이미지 압축파일로 저장
 
