@@ -102,6 +102,7 @@
     nginx
 
 ## 볼륨 컨테이너
+
 * 특정 컨테이너의 볼륨 마운트를 공유할 수 있습니다.
     docker run -d \
     --name my-volume \
@@ -116,7 +117,9 @@
     nginx
 
 ## 도커 볼륨
+
 *도커가 제공하는 볼륨 관리 기능을 활용하여 데이터를 보존합니다.   기본적으로 /var/lib/docker/volumes/${volume-name}/_data 에 데이터가 저장됩니다.
+
 * web-volume 도커 볼륨 생성
     docker volume create --name db
 * 도커의 web-volume 볼륨을 Nginx의 웹 루트 디렉토리로 마운트
@@ -127,6 +130,7 @@
     mysql:5.7
 
 ### 읽기전용 볼륨 연결
+
 * 볼륨 연결 설정에 :ro 옵션을 통해 읽기 전용 마운트 옵션을 설정할 수 있습니다.
 * 도커의 web-volume 볼륨을 Nginx의 웹 루트 디렉토리로 읽기 전용 마운트
     docker run -d \
@@ -146,6 +150,7 @@
     cat /var/lib/docker/containers/${CONTAINER_ID}/${CONTAINER_ID}-json.log
 
 ### 로그 용량 제한하기
+
 * 컨테이너 단위로 로그 용량 제한을 할 수 있지만, 도커 엔진에서 기본 설정을 진행할 수도 있습니다. (운영환경에서 필수 설정)
 * 한 로그 파일 당 최대 크기를 3Mb로 제한하고, 최대 로그 파일 3개로 로테이팅.
     docker run \
@@ -156,12 +161,14 @@
     nginx
 
 ## Dockerfile 없이 이미지 생성
+
 * 기존 컨테이너를 기반으로 새 이미지를 생성할 수 있습니다.
 * docker commit [OPTIONS] CONTAINER [REPOSITORY[:TAG]]
 * ubuntu 컨테이너의 현재 상태를 my_ubuntu:v1 이미지로 생성
     docker commit -a fastcampus -m “First Commit” ubuntu my_ubuntu:v1
 
-## Dockerfile을 기반으로 새 이미지를 생성할 수 있습니다.
+## Dockerfile을 기반으로 새 이미지를 생성할 수 있습니다
+
     FROM node:12-alpine
     RUN apk add --no-cache python3 g++ make
     WORKDIR /app
@@ -178,6 +185,7 @@
 [docs.docker.com](https://docs.docker.com/engine/reference/builder/, "link")
 
 ## 빌드 컨텍스트
+
 * 도커 빌드 명령 수행 시 현재 디렉토리(Current Working Directory)를 빌드 컨텍스트(Build Context)라고 합니다.   dockerfile로부터 이미지 빌드에 필요한 정보를 도커 데몬에게 전달하기 위한 목적입니다.
     => [internal] load build definition from Dockerfile 0.0s
     => => transferring dockerfile: 190B 0.0s
@@ -189,6 +197,7 @@
     => => transferring context: 4.61MB 0.1s
 
 ### .dockerignore
+
 * .gitignore와 동일한 문법을 가지고 있습니다.
 * 특정 디렉토리 혹은 파일 목록을 빌드 컨텍스트에서 제외하기 위한 목적입니다.
     <pre>
@@ -203,12 +212,17 @@
     </code>
 
 ## 이미지 압축파일로 저장
-### 이미지를 tar 압축파일로 저장합니다.
+
+### 이미지를 tar 압축파일로 저장합니다
+
 * docker save -o [OUTPUT-FILE] IMAGE
 * ubuntu:focal 이미지를 ubuntu_focal.tar 압축 파일로 저장
     docker save -o ubuntu_focal.tar ubuntu:focal
+
 ## 이미지 압축에서 불러오기
-### 이미지를 tar 압축파일로부터 불러옵니다.
+
+### 이미지를 tar 압축파일로부터 불러옵니다
+
 * docker load -i [INPUT-FILE]
 * ubuntu_focal.tar 압축 파일에서 ubuntu:focal 이미지 불러오기
     docker load -i ubuntu_focal.tar

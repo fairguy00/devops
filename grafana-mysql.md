@@ -11,7 +11,8 @@
 - 로그 드라이버 옵션을 통해 로그 로테이팅
 
 ### 2단계: Grafana + MySQL 구성하기
-#### 요구사항
+
+### 요구사항
 
 - 1단계 요구사항 포함
 - grafana.ini를 통해 database 설정을 sqlite에서 MySQL로 변경
