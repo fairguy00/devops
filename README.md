@@ -1,4 +1,4 @@
-# 3-docker-kube
+# 3-docker-kubernetes
 
 ### devops
 ```
